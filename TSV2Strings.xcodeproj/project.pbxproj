@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		1D980420272112FC00EF2F5C /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D98041F272112FC00EF2F5C /* main.swift */; };
+		1D9804272721136200EF2F5C /* Decoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9804262721136200EF2F5C /* Decoder.swift */; };
+		1D98042927211AC700EF2F5C /* ConsoleIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D98042827211AC700EF2F5C /* ConsoleIO.swift */; };
+		1D98042B27211BF100EF2F5C /* Panagram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D98042A27211BF000EF2F5C /* Panagram.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -23,8 +26,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		1D98041C272112FC00EF2F5C /* TSV2Strings */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TSV2Strings; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D98041C272112FC00EF2F5C /* tsv2strings */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = tsv2strings; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D98041F272112FC00EF2F5C /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		1D9804262721136200EF2F5C /* Decoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Decoder.swift; sourceTree = "<group>"; };
+		1D98042827211AC700EF2F5C /* ConsoleIO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsoleIO.swift; sourceTree = "<group>"; };
+		1D98042A27211BF000EF2F5C /* Panagram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Panagram.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,7 +55,7 @@
 		1D98041D272112FC00EF2F5C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1D98041C272112FC00EF2F5C /* TSV2Strings */,
+				1D98041C272112FC00EF2F5C /* tsv2strings */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -58,6 +64,9 @@
 			isa = PBXGroup;
 			children = (
 				1D98041F272112FC00EF2F5C /* main.swift */,
+				1D9804262721136200EF2F5C /* Decoder.swift */,
+				1D98042827211AC700EF2F5C /* ConsoleIO.swift */,
+				1D98042A27211BF000EF2F5C /* Panagram.swift */,
 			);
 			path = TSV2Strings;
 			sourceTree = "<group>";
@@ -65,9 +74,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1D98041B272112FC00EF2F5C /* TSV2Strings */ = {
+		1D98041B272112FC00EF2F5C /* tsv2strings */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1D980423272112FC00EF2F5C /* Build configuration list for PBXNativeTarget "TSV2Strings" */;
+			buildConfigurationList = 1D980423272112FC00EF2F5C /* Build configuration list for PBXNativeTarget "tsv2strings" */;
 			buildPhases = (
 				1D980418272112FC00EF2F5C /* Sources */,
 				1D980419272112FC00EF2F5C /* Frameworks */,
@@ -77,9 +86,9 @@
 			);
 			dependencies = (
 			);
-			name = TSV2Strings;
+			name = tsv2strings;
 			productName = TSV2Strings;
-			productReference = 1D98041C272112FC00EF2F5C /* TSV2Strings */;
+			productReference = 1D98041C272112FC00EF2F5C /* tsv2strings */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -110,7 +119,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1D98041B272112FC00EF2F5C /* TSV2Strings */,
+				1D98041B272112FC00EF2F5C /* tsv2strings */,
 			);
 		};
 /* End PBXProject section */
@@ -120,6 +129,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D98042B27211BF100EF2F5C /* Panagram.swift in Sources */,
+				1D98042927211AC700EF2F5C /* ConsoleIO.swift in Sources */,
+				1D9804272721136200EF2F5C /* Decoder.swift in Sources */,
 				1D980420272112FC00EF2F5C /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -272,7 +284,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1D980423272112FC00EF2F5C /* Build configuration list for PBXNativeTarget "TSV2Strings" */ = {
+		1D980423272112FC00EF2F5C /* Build configuration list for PBXNativeTarget "tsv2strings" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1D980424272112FC00EF2F5C /* Debug */,
