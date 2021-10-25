@@ -15,10 +15,10 @@ class Decoder{
     
     func handle(_ tsvString : String, _ savePath : String) -> Bool{
         var path = savePath
-        if path.last == "/" {
+        if path.last == "/" { // remove the last char from path
             path.removeLast()
         }
-       let newlines = tsvString.split(whereSeparator: \.isNewline)
+        let newlines = tsvString.split(whereSeparator: \.isNewline)
         for newline in newlines {
             let words = newline.split(separator: "\t")
             var key:String?
@@ -28,20 +28,21 @@ class Decoder{
                 } else {
                     let lang = langs[index - 1]
                     let line = "\"\(key!)\" = \"\(word)\";\n"
-                    langDict[lang, default: ""].append(contentsOf:line)
+                    langDict[lang, default: "unknown"].append(contentsOf:line)
                 }
             }
         }
+        print("Total line: \(newlines.count)")
         
         do {
             for (key, value) in langDict {
                 let thePath = path.appending("/Exchange/Resources/\(key).lproj/MFJ.strings")
-                print("Saving at \(thePath)")
+                print("Saving strings file:\n\(thePath)")
                 try value.write(toFile: thePath, atomically: true, encoding: .utf8)
-                print("Success")
+                print("Saving Successfully")
             }
         } catch {
-            fputs("failed: \(error)", stderr)
+            fputs("Failed: \(error)", stderr)
             return false
         }
         
