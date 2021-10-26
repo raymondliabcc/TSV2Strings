@@ -28,7 +28,7 @@ class Decoder{
                 } else {
                     let lang = langs[index - 1]
                     let line = "\"\(key!)\" = \"\(word)\";\n"
-                    langDict[lang, default: "unknown"].append(contentsOf:line)
+                    langDict[lang, default: ""].append(contentsOf:line)
                 }
             }
         }
