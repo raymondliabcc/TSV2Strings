@@ -17,7 +17,7 @@ class Decoder{
         let newlines = tsvString.split(whereSeparator: \.isNewline)
         for (lineNum, newline) in newlines.enumerated() {
             if (lineNum == 0) {continue} // ignore the first line header
-            let words = newline.split(separator: "\t")
+            let words = newline.split(separator: "\t", maxSplits: langs.count + 1, omittingEmptySubsequences: false)
             var key:String?
             for (index, word) in words.enumerated() {
                 if index == 0 {
@@ -37,7 +37,8 @@ class Decoder{
             var size = winsize();
             let _ = ioctl(STDOUT_FILENO, TIOCGWINSZ, &size);// get window size
             var lineSep = "" // create separator
-            for _ in 1...size.ws_col {
+            let col = size.ws_col < 20 ? 20 : size.ws_col
+            for _ in 1...col {
                 lineSep += "-"
             }
             print(lineSep)
