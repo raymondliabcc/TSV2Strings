@@ -22,14 +22,19 @@ if argCount != 2 {
 } else {
     consoleIO.writeMessage("tsv path:\n\(argument)")
     consoleIO.writeMessage("output path:\n\(baseFolder)")
-    let tsv = try? String(contentsOfFile: argument)
     
-    let success = Decoder().handle(tsv!, baseFolder)
-    
-    if success {
-        consoleIO.writeMessage("strings files are successfully generated")
-    } else {
-        consoleIO.writeMessage("strings files generation failed")
+    do {
+        let tsv = try String(contentsOfFile: argument)
+        
+        let success = Decoder().handle(tsv, URL(fileURLWithPath: baseFolder))
+        
+        if success {
+            consoleIO.writeMessage("strings files are successfully generated")
+        } else {
+            consoleIO.writeMessage("strings files generation failed")
+        }
+    } catch {
+        consoleIO.writeMessage("Failed to read file: \(error)", to: .error)
     }
 }
 

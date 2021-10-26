@@ -13,16 +13,13 @@ class Decoder{
     
     var langDict:Dictionary<String, String> = [:]
     
-    func handle(_ tsvString : String, _ savePath : String) -> Bool{
-        var path = savePath
-        if path.last == "/" { // remove the last char from path
-            path.removeLast()
-        }
+    func handle(_ tsvString : String, _ savePath : URL) -> Bool{
         let newlines = tsvString.split(whereSeparator: \.isNewline)
-        for newline in newlines {
+        for (lineNum, newline) in newlines.enumerated() {
+            if (lineNum == 0) {continue} // ignore the first line header
             let words = newline.split(separator: "\t")
             var key:String?
-            words.enumerated().forEach{ (index, word) in
+            for (index, word) in words.enumerated() {
                 if index == 0 {
                     key = String(word)
                 } else {
@@ -33,20 +30,28 @@ class Decoder{
             }
         }
         print("Total line: \(newlines.count)")
-        
-        do {
-            for (key, value) in langDict {
-                let thePath = path.appending("/Exchange/Resources/\(key).lproj/MFJ.strings")
-                print("Saving strings file:\n\(thePath)")
-                try value.write(toFile: thePath, atomically: true, encoding: .utf8)
-                print("Saving Successfully")
+        var result = true
+        for (key, value) in langDict {
+            let thePath = savePath.appendingPathComponent("Exchange/Resources/\(key).lproj/MFJ.strings", isDirectory:false)
+            
+            var size = winsize();
+            let _ = ioctl(STDOUT_FILENO, TIOCGWINSZ, &size);// get window size
+            var lineSep = "" // create separator
+            for _ in 1...size.ws_col {
+                lineSep += "-"
             }
-        } catch {
-            fputs("Failed: \(error)", stderr)
-            return false
+            print(lineSep)
+            print("Saving strings file:\n\(thePath)")
+            do {
+                try value.write(to: thePath, atomically: true, encoding: .utf8)
+                print("Saving Successfully")
+            } catch {
+                fputs("Failed: \(error)\n", stderr)
+                result = false
+            }
         }
         
-        return true
+        return result
     }
     
     
