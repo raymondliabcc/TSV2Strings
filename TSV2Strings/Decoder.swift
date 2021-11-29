@@ -9,7 +9,7 @@ import Foundation
 
 class Decoder{
     
-    let langs = ["en", "zh-hans", "zh-hant", "ko", "ru", "tr", "es"]
+    let langs = ["en", "zh-hans", "zh-hant", "ko", "ru", "tr", "es", "vi", "hi", "pt-PT", "it"]
     
     var langDict:Dictionary<String, String> = [:]
     

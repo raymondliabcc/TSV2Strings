@@ -26,6 +26,7 @@ if argCount != 2 {
     do {
         let tsv = try String(contentsOfFile: argument)
         
+//        let success = Decoder().handle(tsv, URL(fileURLWithPath: "/Users/raymondli/workspace/exchange-ios-app-uat/Exchange"))
         let success = Decoder().handle(tsv, URL(fileURLWithPath: baseFolder))
         
         if success {
