@@ -28,12 +28,21 @@ class Decoder{
     
     var langDict:Dictionary<String, String> = [:]
     
-    func handle(_ csvPath : String, _ savePath : URL) -> Bool{
+    func handle(_ csvPath : String, _ savePath : URL, _ local : Bool) -> Bool{
         var csvFile: CSV?
-        do {
-            csvFile = try CSV(url: URL(fileURLWithPath: csvPath))
-        } catch {
-            consoleIO.writeMessage("Failed to read file: \(error)", to: .error)
+        
+        if (local){
+            do {
+                csvFile = try CSV(url: URL(fileURLWithPath: csvPath))
+            } catch {
+                consoleIO.writeMessage("Failed to read file from path \(csvPath): \(error)", to: .error)
+            }
+        } else {
+            do {
+                csvFile = try CSV(url: URL(string: csvPath)!)
+            } catch {
+                consoleIO.writeMessage("Failed to read file from URL \(csvPath): \(error)", to: .error)
+            }
         }
         
         if (csvFile == nil){
