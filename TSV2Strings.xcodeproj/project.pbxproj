@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D5126032807366A0075C64B /* SwiftCSV in Frameworks */ = {isa = PBXBuildFile; productRef = 1D5126022807366A0075C64B /* SwiftCSV */; };
 		1D980420272112FC00EF2F5C /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D98041F272112FC00EF2F5C /* main.swift */; };
 		1D9804272721136200EF2F5C /* Decoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9804262721136200EF2F5C /* Decoder.swift */; };
 		1D98042927211AC700EF2F5C /* ConsoleIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D98042827211AC700EF2F5C /* ConsoleIO.swift */; };
@@ -37,6 +38,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D5126032807366A0075C64B /* SwiftCSV in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,6 +88,9 @@
 			dependencies = (
 			);
 			name = tsv2strings;
+			packageProductDependencies = (
+				1D5126022807366A0075C64B /* SwiftCSV */,
+			);
 			productName = TSV2Strings;
 			productReference = 1D98041C272112FC00EF2F5C /* tsv2strings */;
 			productType = "com.apple.product-type.tool";
@@ -114,6 +119,9 @@
 				Base,
 			);
 			mainGroup = 1D980413272112FC00EF2F5C;
+			packageReferences = (
+				1D5126012807366A0075C64B /* XCRemoteSwiftPackageReference "SwiftCSV" */,
+			);
 			productRefGroup = 1D98041D272112FC00EF2F5C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -300,6 +308,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1D5126012807366A0075C64B /* XCRemoteSwiftPackageReference "SwiftCSV" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/swiftcsv/SwiftCSV.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.6.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1D5126022807366A0075C64B /* SwiftCSV */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1D5126012807366A0075C64B /* XCRemoteSwiftPackageReference "SwiftCSV" */;
+			productName = SwiftCSV;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1D980414272112FC00EF2F5C /* Project object */;
 }

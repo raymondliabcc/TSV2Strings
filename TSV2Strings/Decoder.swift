@@ -6,6 +6,21 @@
 //
 
 import Foundation
+import SwiftCSV
+
+extension String {
+    /// stringToFind must be at least 1 character.
+    func countInstances(of stringToFind: String) -> Int {
+        assert(!stringToFind.isEmpty)
+        var count = 0
+        var searchRange: Range<String.Index>?
+        while let foundRange = range(of: stringToFind, options: [], range: searchRange) {
+            count += 1
+            searchRange = Range(uncheckedBounds: (lower: foundRange.upperBound, upper: endIndex))
+        }
+        return count
+    }
+}
 
 class Decoder{
     
@@ -13,23 +28,34 @@ class Decoder{
     
     var langDict:Dictionary<String, String> = [:]
     
-    func handle(_ tsvString : String, _ savePath : URL) -> Bool{
-        let newlines = tsvString.split(whereSeparator: \.isNewline)
-        for (lineNum, newline) in newlines.enumerated() {
-            if (lineNum == 0) {continue} // ignore the first line header
-            let words = newline.split(separator: "\t", maxSplits: langs.count + 1, omittingEmptySubsequences: false)
-            var key:String?
-            for (index, word) in words.enumerated() {
+    func handle(_ csvPath : String, _ savePath : URL) -> Bool{
+        var csvFile: CSV?
+        do {
+            csvFile = try CSV(url: URL(fileURLWithPath: csvPath))
+        } catch {
+            consoleIO.writeMessage("Failed to read file: \(error)", to: .error)
+        }
+        
+        if (csvFile == nil){
+            return false
+        }
+        
+        for newline in csvFile!.namedRows {
+            var keyKey:String = ""
+            for (index, langKey) in csvFile!.header.enumerated() {
                 if index == 0 {
-                    key = String(word)
+                    keyKey = langKey
                 } else {
                     let lang = langs[index - 1]
-                    let line = "\"\(key!)\" = \"\(word)\";\n"
+                    let key = newline[keyKey]!;
+                    let wording = newline[langKey]!
+                    let wordingHandled = wording.replacingOccurrences(of: "\"", with: "\\\"")
+                    let line = "\"\(key)\" = \"\(wordingHandled)\";\n"
                     langDict[lang, default: ""].append(contentsOf:line)
                 }
             }
         }
-        print("Total line: \(newlines.count)")
+        print("Total line: \(csvFile!.namedRows.count)")
         var result = true
         for (key, value) in langDict {
             let thePath = savePath.appendingPathComponent("Exchange/Resources/\(key).lproj/MFJ.strings", isDirectory:false)
