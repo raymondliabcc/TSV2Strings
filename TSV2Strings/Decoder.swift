@@ -59,8 +59,12 @@ class Decoder{
                     let key = newline[keyKey]!;
                     let wording = newline[langKey]!
                     let wordingHandled = wording.replacingOccurrences(of: "\"", with: "\\\"")
-                    let line = "\"\(key)\" = \"\(wordingHandled)\";\n"
-                    langDict[lang, default: ""].append(contentsOf:line)
+                    if !wordingHandled.isEmpty {
+                        let line = "\"\(key)\" = \"\(wordingHandled)\";\n"
+                        langDict[lang, default: ""].append(contentsOf:line)
+                    } else {
+                        print("key \(key) has empty value in \(lang), ignore")
+                    }
                 }
             }
         }
